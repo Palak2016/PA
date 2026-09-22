@@ -1,0 +1,17 @@
+class Solution{
+  ArrayList<String> permute(String str){
+    ArrayList<String> result = new ArrayList<>();
+    generate(str,"",result);
+    return result;
+  }
+  void generate(String str, String current, ArrayList<String> result){
+    if(str.length()==0){
+      result.add(current);
+      return;
+    }
+    for(int i=0; i<str.length(); i++){
+      char ch = str.charAt(i);
+      String remaining = str.substring(0,i)+str.substring(i+1);
+      generate(remaining,current+ch,result);
+    }
+}

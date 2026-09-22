@@ -1,0 +1,42 @@
+lass Solution {
+    static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+        }
+    }
+    static Node createList(int n){
+        Node head = null;
+        Node tail = null;
+        for(int i=1; i<=n; i++){
+            Node newNode = new Node(i);
+            if(head==null){
+                head = newNode;
+                tail = newNode;
+            }else{
+                tail.next = newNode;
+                tail = newNode;
+            }
+        }
+        tail.next = head;
+        return head;
+    }
+    public int findTheWinner(int n, int k) {
+        Node head = createList(n);
+        Node prev = head;
+        Node curr = head;
+        while(prev.next!=head){
+            prev = prev.next;
+        }
+        while(curr.next != curr){
+            for(int i=1; i<k; i++){
+                prev = curr;
+                curr = curr.next;
+            }
+            prev.next = curr.next;
+            curr = curr.next;
+        }
+        return curr.data;
+    }
+}

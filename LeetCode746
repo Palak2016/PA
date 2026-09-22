@@ -1,0 +1,23 @@
+class Solution {
+
+    public static int solve(int[] cost, int index){
+        if(index >= cost.length){
+            return 0;
+        }
+        return cost[index]+Math.min(solve(cost,index+1),solve(cost,index+2));
+    }
+    public static int minCostClimbingStairs(int[] cost){
+        int prev2 = cost[0];
+        int prev1 = cost[1];
+
+        for (int i = 2; i < cost.length; i++) {
+            int curr = cost[i] + Math.min(prev1, prev2);
+
+            prev2 = prev1;
+            prev1 = curr;
+        }
+
+        return Math.min(prev1, prev2);
+    }
+    
+}
