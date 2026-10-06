@@ -1,0 +1,35 @@
+class Solution {
+    public String decodeString(String s) {
+        // int n=s.length();
+        Stack<Integer> nums= new Stack<>();
+        Stack<String> strs= new Stack<>();
+        StringBuilder curr=new StringBuilder();
+        int num=0;
+        for(Character x:s.toCharArray()){
+            if(Character.isDigit(x)){
+                num= num*10+ (x-'0');
+            }
+            else if(x.equals('[')){
+                nums.push(num);
+                strs.push(curr.toString());
+
+                num=0;
+                curr=new StringBuilder();
+
+            }
+            else if(x.equals(']')){
+                int n=nums.pop();
+                String prev= strs.pop();
+                StringBuilder temp=new StringBuilder(prev);
+                for(int i=0;i<n;i++){
+                    temp.append(curr);
+                }
+                curr=temp;
+            }
+            else{
+                curr.append(x);
+            }
+        }
+        return curr.toString();
+    }
+}

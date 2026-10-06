@@ -1,0 +1,21 @@
+// Online Java Compiler (Editor)
+// Write and run Java online using this editor.
+
+class Main {
+    public static void main(String[] args) {
+        int[] arr={-1,0,-11,7,2,-44,6};
+        int n=arr.length;
+        int largest=Integer.MIN_VALUE;
+        int second= Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            if(arr[i]>largest){
+                second=largest;
+                largest=arr[i];
+            }
+            else if(arr[i]>second && arr[i]<largest){
+                second=arr[i];
+            }
+        }
+        System.out.println("second largest: "+second);
+    }
+}
